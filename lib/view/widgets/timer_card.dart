@@ -13,7 +13,7 @@ class TimerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double percentageCompletion = (double.parse(seconds)/ 60).remainder(1);
+    double percentageCompletion = (double.parse(hours)/ 10000).remainder(1);
     bool completion = (percentageCompletion > 0.98  ? false : true);
     return Container(
       decoration: BoxDecoration(

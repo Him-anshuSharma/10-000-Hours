@@ -7,6 +7,7 @@ import 'package:ten_thousand_hours/data/timer_data.dart';
 class TimerProvider extends ChangeNotifier {
   TimerData timerData = TimerData(0, 0, 0);
   Timer? stopwatchTimer;
+  bool isTimerRunning = false;
   Duration myDuration = const Duration(hours: 0);
 
   void updateTimer(int hours, int minutes, int seconds) {
@@ -26,7 +27,10 @@ class TimerProvider extends ChangeNotifier {
     if (kDebugMode) {
       print("start");
     }
-    stopwatchTimer ??= Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
+    if (!isTimerRunning) {
+      stopwatchTimer = Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
+      isTimerRunning = true;
+    }
     notifyListeners();
   }
 
@@ -37,9 +41,12 @@ class TimerProvider extends ChangeNotifier {
       print("stopTimer: updating time");
     }
     taskList[index].timeDevoted = timerData;
-    stopwatchTimer!.cancel();
+    stopwatchTimer?.cancel(); // Cancel the current timer if it exists
+    stopwatchTimer = null; // Reset the stopwatchTimer variable
+    isTimerRunning = false;
     notifyListeners();
   }
+
 
   void resetTimer(int index, List<TaskData> taskList) {
     setDuration(const Duration(hours: 0));
