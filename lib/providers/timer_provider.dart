@@ -26,8 +26,7 @@ class TimerProvider extends ChangeNotifier {
     if (kDebugMode) {
       print("start");
     }
-    stopwatchTimer =
-        Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
+    stopwatchTimer ??= Timer.periodic(const Duration(seconds: 1), (_) => setCountDown());
     notifyListeners();
   }
 

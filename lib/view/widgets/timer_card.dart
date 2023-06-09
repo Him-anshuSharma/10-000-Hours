@@ -13,7 +13,7 @@ class TimerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double percentageCompletion = (double.parse(minutes)/ 60).remainder(1);
+    double percentageCompletion = (double.parse(seconds)/ 60).remainder(1);
     bool completion = (percentageCompletion > 0.98  ? false : true);
     return Container(
       decoration: BoxDecoration(
@@ -24,7 +24,7 @@ class TimerCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Image.asset(
-            'lib/assets/work1.png',
+            'assets/work1.png',
             height: 250,
             fit: BoxFit.fitHeight,
           ),

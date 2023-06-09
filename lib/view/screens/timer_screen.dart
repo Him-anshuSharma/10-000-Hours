@@ -169,8 +169,6 @@ class _TaskTimerState extends State<TaskTimer> {
                         backgroundColor: Colors.greenAccent),
                     onPressed: () {
                       provider.startTimer(setCountDown);
-                      provider.stopTimer(index, taskList);
-                      provider.startTimer(setCountDown);
                       Provider.of<TaskListProvider>(context, listen: false)
                           .update(index, taskList[index]);
                     },
@@ -182,7 +180,7 @@ class _TaskTimerState extends State<TaskTimer> {
                   // Step 10
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.redAccent),
+                        backgroundColor: Colors.yellow),
                     onPressed: () {
                       if (provider.stopwatchTimer == null ||
                           provider.stopwatchTimer!.isActive) {
